@@ -1,0 +1,28 @@
+@import "src/assets/styles/variables";
+
+.drag-list {
+  .drag-box {
+    display: block;
+  }
+}
+
+.btn-groups {
+  display: flex;
+  flex-wrap: unset;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem;
+  border: 1px solid $primary-500;
+  margin-bottom: .5rem;
+  color: $primary-500;
+  font-size: $t2-font-size;
+  &.disabled {
+    color: $black-400;
+    background-color: $black-100;
+    border-color: transparent;
+  }
+}

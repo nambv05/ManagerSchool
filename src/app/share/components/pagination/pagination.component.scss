@@ -1,0 +1,24 @@
+@import "src/assets/styles/variables";
+
+.btn-paging {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background-color: $white;
+  border: 1px solid $black-300;
+  color: $black-500;
+  &.active {
+    background: $white;
+    color: $primary-700;
+    border: 1px solid $primary-700;
+  }
+  &:not(:first-child) {
+    margin-left: 0.5rem;
+  }
+}
+
+@media all and (-ms-high-contrast:none)
+{
+  .pagination{
+    padding-bottom: 15px;
+  }
+}

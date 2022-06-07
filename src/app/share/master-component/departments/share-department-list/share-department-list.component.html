@@ -1,0 +1,31 @@
+<div class="tree-view" *ngIf="showRoot">
+  <ul class="items items-0">
+    <li class="item item-0">
+      <span>
+        <i class="fas fa-folder icon icon-folder"></i>
+        ROOT
+      </span> 
+    </li>
+    <ul *ngIf="items.length" class="items items-{{ level }}" [ngClass]="{'items-first': level == 1}">
+      <ng-container *ngFor="let item of items; let i = index">
+        <app-share-department-one #departmentOne *ngIf="!item?.isDeleted  && excludeItems.indexOf(item?.id) === -1"
+          [(item)]="items[i]" [level]="level" [options]="options" [allowUnlinkParent]="allowUnlinkParent"
+          [allowSelect]="allowSelect" (eventEdit)="onClickEdit($event)" [selected]="selected" (eventSelect)="onSelect($event)"
+          (eventRemove)="onClickRemove($event)" (eventShowUser)="onClickShowUser($event)"
+          (eventUnLinkParentList)="onClickUnlinkParent($event)"></app-share-department-one>
+      </ng-container>
+    </ul>
+  </ul>
+</div>
+
+<ng-container *ngIf="!showRoot">
+  <ul *ngIf="items?.length" class="items items-{{ level }}" [ngClass]="{'items-first': level == 1}">
+    <ng-container *ngFor="let item of items; let i = index">
+      <app-share-department-one #departmentOne *ngIf="!items[i]?.isDeleted && excludeItems.indexOf(item?.id) === -1"
+        [item]="items[i]" [level]="level" [options]="options" [allowUnlinkParent]="allowUnlinkParent"
+        [allowSelect]="allowSelect" (eventEdit)="onClickEdit($event)" [selected]="selected" (eventSelect)="onSelect($event)"
+        (eventRemove)="onClickRemove($event)" (eventShowUser)="onClickShowUser($event)"
+        (eventUnLinkParentList)="onClickUnlinkParent($event)"></app-share-department-one>
+    </ng-container>
+  </ul>
+</ng-container>

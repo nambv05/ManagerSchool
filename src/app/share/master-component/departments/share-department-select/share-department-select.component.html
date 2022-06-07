@@ -1,0 +1,47 @@
+<h4>{{ title | translate }}
+  <button class="btn btn-primary mr-2 my-1 btn-custom btn-sm" (click)="addRow()">
+    <i class="fas fa-plus-square"></i>
+    {{"COMMON.ADD" | translate}}
+  </button>
+</h4>
+<div class="table-resizable">
+  <table class="table table-hover" *ngIf="headers.length">
+    <thead>
+      <tr class="text-nowrap">
+        <th class="table-selection text-center" *ngIf="!selectSearchMode">#</th>
+        <th *ngFor="let header of headers" [style.text-align]="getTextAlign(header.type)">
+          <div class="th-sortable pr-2" [sortable]="header.column" [selectSearchMode]="selectSearchMode"
+            (sort)="onSort($event)">
+            <span class="th-name">{{header.name | translate}}</span>
+            <span class="th-icon"><i class="fa" aria-hidden="false"></i></span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of formList; let i = index" [formGroup]="item._form"
+        [ngClass]="{'d-none': item._form.value.isDeleted,'selected-row': selectSearchMode? selectedValue?.value === item._form.get(selectedValue?.key)?.value: item.checked.value}"
+        (click)="selectSearchChosen(item._form.getRawValue())">
+        <td class="table-selection" *ngIf="!selectSearchMode">
+          <button class="btn py-0 px-1" (click)="deleteOne(item._form, i)">
+            <img src="assets/icons/delete.svg">
+          </button>
+        </td>
+        
+        <td *ngFor="let header of headers" [style.text-align]="getTextAlign(header.type)">
+
+          <app-input-resize *ngIf="selectSearchMode" [type]="header?.type"
+            [value]="item?._form.get(header?.column)?.value" [header]="header" [unit]="header?.numberFormat?.unit">
+          </app-input-resize>
+
+          <app-dynamic-input *ngIf="!selectSearchMode"
+            [appTooltip]="getErrorControlMsg(item._form, header?.column, ['required', 'min', 'max', 'maxlength', 'malformed'])"
+            [class]="{'border border-danger': isShowErrorControl(item._form, header?.column)}"
+            [formControlName]="header?.column" [type]="header?.type" [numberFormat]="header?.numberFormat"
+            [searchOption]="header?.selectSearchOption" [isPrimaryKey]="header?.isPrimaryKey"
+            [select2Option]="header.select2Option"
+            (chooseMasterPopup)="catchMasterPopupData(item._form, header.column, $event)"></app-dynamic-input>
+        </td>
+      </tr>
+    </tbody>
+  </table>

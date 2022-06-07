@@ -1,0 +1,27 @@
+<form  [formGroup]="form">
+
+<fieldset class="positions mt-2">
+  <legend *ngIf="legend">{{'EMPLOYEES.FIELDS.' + legend | translate}}</legend>
+  <div class="form-group row  mb-1 mt-2">
+    <div class="col-md-4">
+      <label class="col-form-label ">{{'EMPLOYEES.FIELDS.PROVINCIAL' | translate}}</label>
+      <ng-select [readonly]="isSelected" [items]="itemsProvince" formControlName="provincial" bindValue="value" bindLabel="text"></ng-select>
+    </div>
+    <div class="col-md-4">
+      <label class="col-form-label ">{{'EMPLOYEES.FIELDS.DISTRICT' | translate}}</label>
+      <ng-select [readonly]="isSelected" [items]="itemsDistrictByProvince[form.get('provincial').value] || itemsDistrictByProvince[address?.district]" formControlName="district" bindValue="value" bindLabel="text"></ng-select>
+    </div>
+    <div class="col-md-4">
+      <label class="col-form-label ">{{'EMPLOYEES.FIELDS.WARD' | translate}}</label>
+      <ng-select [readonly]="isSelected" [items]="itemsWardsByDistrict[form.get('district').value] || itemsDistrictByProvince[address?.commune]" formControlName="commune" bindValue="value" bindLabel="text"></ng-select>
+    </div>
+  </div>
+
+  <div class="form-group row  mb-1 mt-2">
+    <div class="col-md-12">
+      <label class="col-form-label ">{{'EMPLOYEES.FIELDS.VILLAGE' | translate}}</label>
+      <input class="form-control" [attr.disabled]="isSelected ? true : null" [attr.readonly]="isSelected ? true : null" formControlName="address"/>
+    </div>
+  </div>
+</fieldset>
+</form>

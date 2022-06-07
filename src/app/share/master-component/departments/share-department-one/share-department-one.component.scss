@@ -1,0 +1,14 @@
+.controls{
+    .control{
+        cursor: pointer;
+        padding: 5px;
+        font-size: 12px;
+        &.icon-select{
+            font-size: 18px;
+        }
+    }
+  
+}
+::ng-deep .my-custom-class  {
+ width: 150px;
+  }

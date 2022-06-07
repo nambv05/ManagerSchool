@@ -1,0 +1,29 @@
+<div class="dropdown">
+    <div class="input-group">
+        <div class="inner-addon right-addon">
+            <input class="form-control dropdown-toggle" readonly [value]="itemSelected?.name" (click)="openPop()">
+            <span class="inner-icon-right" *ngIf="itemSelected?.name" (click)="clearData()">&times;</span>
+        </div>
+        <div class="input-group-append">
+            <button class="btn border-left-0" type="button" (click)="openPop()">
+                <i class="fas fa-search fs14"></i></button>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #modalContent let-modal>
+    <div class="modal-header">
+        <h3>{{ "DEPARTMENTS.SELECT" | translate }}</h3>
+
+        <button type="button" class="close m-0 p-1" (click)="closePopup()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-share-department-list [selectSearchMode]="true" [showRoot]="true" [allowSelect]="true"
+            [selected]="[itemSelected?.id]" (eventSelect)="onSelect($event)">
+        </app-share-department-list>
+    </div>
+</ng-template>

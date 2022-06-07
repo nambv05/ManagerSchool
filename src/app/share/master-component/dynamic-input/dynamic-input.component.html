@@ -1,0 +1,76 @@
+<ng-container [ngSwitch]="type">
+  <!-- SELECT with single  SEARCH -->
+  <ng-select class="form-control-plaintext" *ngSwitchCase="TableCellFormat.SELECT2"
+             [items]="select2Option?.options"
+             [bindLabel]="select2Option?.bindLabel"
+             [bindValue]="select2Option?.bindValue"
+             [clearable]="select2Option?.isClearable"
+             [searchable]="!!!select2Option?.isNoSearchable"
+             (blur)="onTouched()"
+             [formControl]="value"
+             [multiple]="select2Option?.multipleSelect"
+             [hideSelected]="select2Option?.hideSelected"
+             [ngClass]="class">
+  </ng-select>
+
+  <!-- SELECT with search by multiple column -->
+  <app-select-search-with-popup *ngSwitchCase="TableCellFormat.SELECT_SEARCH"
+                                [formControl]="value"
+                                [class]="class"
+                                [options]="searchOption"
+                                [isMultipleSelect]="searchOption.isMultipleSelect"
+                                (choose)="onChooseMasterPopup($event)"
+                                (blur)="onTouched()"
+                                (onTouch)="onTouched()"
+  ></app-select-search-with-popup>
+
+  <!-- Input type number -->
+  <app-number-input *ngSwitchCase="TableCellFormat.NUMBER"
+                    [formControl]="value"
+                    [moneyUnit]="numberFormat?.unit"
+                    [class]="class"
+                    [numberFormat]="numberFormat"
+                    [isDisabled]="isDisabled"
+                    [isReadOnly]="isReadOnly"
+                    [minValue]="minValue||null" [maxValue]="maxValue||null"
+                    (blur)="onTouched()"
+  ></app-number-input>
+
+  <!-- Input type date -->
+  <input class="form-control" *ngSwitchCase="TableCellFormat.DATE"
+         type="date"
+         [ngClass]="class"
+         [formControl]="value"
+         [min]="minValue||null" [max]="maxValue||null">
+
+  <!-- DateTime-picker -->
+  <app-date-time-picker *ngSwitchCase = "TableCellFormat.DATE_PICKER"
+        [formControl]="value"
+        [format]="format"
+        [isShowTimePicker]="isShowTimePicker"
+                        [class]="customTimePicker"
+  >
+  </app-date-time-picker>
+
+  <!-- Input boolean -->
+  <app-toggle-check *ngSwitchCase="TableCellFormat.BOOLEAN"
+                    [formControl]="value"
+                    [class]="class"
+                    (blur)="onTouched()"
+  ></app-toggle-check>
+  <!-- textarea -->
+  <textarea rows="1" class="form-control custom-min-height" *ngSwitchCase="TableCellFormat.TEXTAREA"
+         type="date"
+         [ngClass]="class"
+         [formControl]="value" [minLength]="minValue||null" [maxlength]="maxValue||null">
+  </textarea>
+
+  <!-- DEFAULT -->
+  <ng-container *ngSwitchDefault>
+    <input class="form-control"
+           type="text"
+           [ngClass]="class"
+           [formControl]="value"
+           (blur)="onTouched()">
+  </ng-container>
+</ng-container>

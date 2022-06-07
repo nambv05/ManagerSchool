@@ -1,0 +1,154 @@
+<h3 class="mt-4 ml-3" *ngIf="id == undefined">{{"LEAVE_REQUEST.ADD_TITLE" | translate}}</h3>
+<h3 class="mt-4 ml-3" *ngIf="id">{{"LEAVE_REQUEST.EDIT_TITLE" | translate}}</h3>
+<div class="row mt-5">
+  <div class="col-1">
+
+  </div>
+  <div class="col-8">
+    <div [formGroup]="form" *ngIf="showFOrmAdd">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label" for="leaveType">Loại đơn</label>
+        <div class="col-sm-5">
+          <select id="leaveType" class="form-control h-39px" formControlName="leave_request_type">
+            <option *ngFor="let type of app_config.LEAVE_REQUEST_TYPE" [value]="type.value">{{type.text}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row custom-height">
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label"
+               *ngIf="form.get('leave_request_type').value != 5  && form.get('leave_request_type').value != 6 && form.get('leave_request_type').value != 7">Ngày vắng mặt</label>
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label" *ngIf="form.get('leave_request_type').value == 5 || form.get('leave_request_type').value == 6">Ngày quên</label>
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label" *ngIf="form.get('leave_request_type').value == 7 ">Ngày làm việc bên ngoài</label>
+        <div class="col-sm-5">
+          <app-date-time-picker [format]="'DD-MM-YYYY'" formControlName="date_request"></app-date-time-picker>
+        </div>
+      </div>
+
+      <div class="form-group row custom-height" *ngIf="form.get('leave_request_type').value == 5">
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label">Giờ check in</label>
+        <div class="col-auto">
+          <div [ngbTooltip]="formGetErrorControlMsg('start_time', ['required'])"
+          >
+            <app-time-picker formControlName="start_time" [date]="form.get('date_request').value"
+                             [class]="formIsShowErrorControl('start_time') ? 'border border-danger' : ''"></app-time-picker>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row custom-height" *ngIf="form.get('leave_request_type').value == 6">
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label">Giờ check out</label>
+        <div class="col-auto">
+          <div [ngbTooltip]="formGetErrorControlMsg('end_time', ['required'])"
+          >
+            <app-time-picker formControlName="end_time" [date]="form.get('date_request').value"
+                             [class]="formIsShowErrorControl('end_time') ? 'border border-danger' : ''"></app-time-picker>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div *ngIf="form.get('leave_request_type').value != 4 && form.get('leave_request_type').value != 5 && form.get('leave_request_type').value != 6">
+        <div class="form-group row custom-height">
+          <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label">Từ lúc</label>
+          <div class="col-auto">
+            <div [ngbTooltip]="formGetErrorControlMsg('start_time', ['required'])"
+            >
+              <app-time-picker formControlName="start_time" [date]="form.get('date_request').value"
+                               [class]="formIsShowErrorControl('start_time') ? 'border border-danger' : ''"></app-time-picker>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row custom-height">
+          <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label">Đến lúc</label>
+          <div class="col-auto">
+            <div [ngbTooltip]="formGetErrorControlMsg('end_time', ['required'])"
+            >
+              <app-time-picker formControlName="end_time"
+                               [class]="formIsShowErrorControl('end_time') ? 'border border-danger' : ''"
+                               [date]="form.get('date_request').value">
+
+              </app-time-picker>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row"
+           *ngIf="form.get('leave_request_type').value != 5 && form.get('leave_request_type').value != 6 && form.get('leave_request_type').value != 7">
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label">Người làm thay công việc</label>
+        <div class="col-sm-9 custom-height">
+          <div [ngbTooltip]="formGetErrorControlMsg('employees_replace', ['required'])"
+               [ngClass]="{'border border-danger': formIsShowErrorControl('employees_replace')}"
+          >
+            <app-select-search-multiple
+              [options]="{
+              apiUrl: 'employees',
+              colLabel: 'email',
+              colValue: 'id'
+            }"
+              maxValue="3"
+              [selectedVal]="employeeReplace"
+              (choose)="chooseMultipleValue($event)"
+            >
+            </app-select-search-multiple>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label" for="leaveReason">Lý do vắng mặt</label>
+        <div class="col-sm-5">
+          <select id="leaveReason" class="form-control h-39px" formControlName="reason_id"
+                  [attr.disabled]="form.get('leave_request_type').value == 5 ? true : null">
+            <option *ngFor="let reason of app_config.LEAVE_REASON" [value]="reason.value">{{reason.text}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row"
+           *ngIf="form.get('leave_request_type').value != 5 && form.get('leave_request_type').value != 6">
+        <div class="col-sm-3">
+        </div>
+        <div class="pl-2">
+          <div class="form-check">
+            <input class="form-check-input custom-input-radio" type="radio" id="exampleRadios1" [value]="1"
+                   formControlName="paid_leave">
+            <label class="form-check-label ml-2 custom-label-radio" for="exampleRadios1">Trừ vào ngày phép năm (nếu
+              còn)</label>
+          </div>
+          <div class="form-check mt-2">
+            <input class="form-check-input custom-input-radio" type="radio" id="exampleRadios2" [value]="2"
+                   formControlName="paid_leave">
+            <label class="form-check-label ml-2 custom-label-radio" for="exampleRadios2">Trừ vào ngày phép OT (nếu
+              còn)</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label">Điền rõ lý do</label>
+        <div class="col-sm-9">
+          <textarea
+            [ngbTooltip]="formGetErrorControlMsg('reason', ['required'])"
+            [ngClass]="{'border border-danger': formIsShowErrorControl('reason')}"
+            class="form-control" rows="3" formControlName="reason"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label pr-4 font-weight-bold required-label">Người duyệt đơn</label>
+        <div class="col-sm-9 pt-2">
+            <span class="pr-1"
+                  *ngFor="let employee of employeeApproval; let i = index">{{employee}}{{i < employeeApproval.length - 1 ? ', ' : ''}}</span>
+        </div>
+      </div>
+      <div class="d-flex justify-content-sm-center mt-4">
+        <button class="btn btn-custom btn-dark mr-3" (click)="btnBack()">Quay lại</button>
+        <button class="btn btn-custom btn-success" (click)="actionSave()">Gửi đơn</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,499 @@
+<div *ngIf="isShowForm" [formGroup]="form">
+  <div class="mt-3">
+    <!--    thông tin cá nhân-->
+    <ngb-accordion #a="ngbAccordion" activeIds="basic-info">
+      <ngb-panel id="basic-info2">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="t2 m-0">{{'EMPLOYEES.PERSONAL_INFORMATION' | translate}}</h5>
+            <button ngbPanelToggle class="btn close p-0">
+              <i class="fa" [ngClass]="opened ? 'fa-angle-down' : 'fa-angle-right'"></i>
+            </button>
+          </div>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+          <div class="row mb-3">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin cũ</h4>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin mới</h4>
+            </div>
+          </div>
+          <app-change-profile-input fieldName="birth_day" typeInput="date" ></app-change-profile-input>
+
+          <app-change-profile-input fieldName="identification_number"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="identification_date" typeInput="date"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="identification_place_of"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="tax_code"></app-change-profile-input>
+
+          <div class="row mb-3">
+            <div class="col-md-2">
+              <label class="col-form-label">{{'EMPLOYEES.FIELDS.PERMANENT_ADDRESS' | translate}}</label>
+            </div>
+            <div class="col-md-5">
+              <app-address [isSelected]="true" [address]="item?.employees_address_permanent"></app-address>
+            </div>
+            <div class="col-md-5">
+              <app-address #formAddressPermanent [address]="item?.employees_address_permanent"></app-address>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-2">
+              <label class="col-form-label">{{'EMPLOYEES.FIELDS.TEMPORARY_ADDRESS' | translate}}</label>
+            </div>
+            <div class="col-md-5">
+              <app-address [isSelected]="true" [address]="item?.employees_address_temporary"></app-address>
+            </div>
+            <div class="col-md-5">
+              <app-address #formAddressTemporary [address]="item?.employees_address_temporary"></app-address>
+            </div>
+          </div>
+
+          <app-change-profile-input fieldName="range_of_vehicle"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="license_plates"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="register_parking"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="bank_number"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="bank_name"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="bank_user_name"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="bank_branch"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="marital_status"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="contact_user"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="phone_contact_user"></app-change-profile-input>
+
+          <div class="row mb-3">
+            <div class="col-md-2">
+              <label class="col-form-label">{{'EMPLOYEES.FIELDS.INFORMATION_CHILDREN' | translate}}</label>
+            </div>
+            <div class="col-md-5">
+              <app-employee-edit-personal-children [allowChange]="false"
+                                                   [children]="childrenInformation">
+              </app-employee-edit-personal-children>
+            </div>
+            <div class="col-md-5">
+              <app-employee-edit-personal-children #formChildren
+                                                   [children]="childrenInformation">
+              </app-employee-edit-personal-children>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+
+  <div class="mt-3">
+    <!--    thông tin liên hệ-->
+    <ngb-accordion #a="ngbAccordion" activeIds="basic-info">
+      <ngb-panel id="basic-info4">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="t2 m-0">{{'EMPLOYEES.CONTACT' | translate}}</h5>
+            <button ngbPanelToggle class="btn close p-0">
+              <i class="fa" [ngClass]="opened ? 'fa-angle-down' : 'fa-angle-right'"></i>
+            </button>
+          </div>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+          <!--          cũ-->
+          <div class="row mb-3">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin cũ</h4>
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin mới</h4>
+            </div>
+          </div>
+          <app-change-profile-input fieldName="phone_number"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="chatwork_account"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="skype_account"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="facebook_link"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="personal_email"></app-change-profile-input>
+
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+
+  <div class="mt-3">
+    <!--    thông tin trình độ học vấn-->
+    <ngb-accordion #a="ngbAccordion" activeIds="basic-info">
+      <ngb-panel id="basic-info7">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="t2 m-0">{{'EMPLOYEES.EDUCATION' | translate}}</h5>
+            <button ngbPanelToggle class="btn close p-0">
+              <i class="fa" [ngClass]="opened ? 'fa-angle-down' : 'fa-angle-right'"></i>
+            </button>
+          </div>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+          <!--          cũ-->
+          <div class="row mb-3">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin cũ</h4>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin mới</h4>
+            </div>
+          </div>
+          <app-change-profile-input fieldName="school_name"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="degree"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="majors"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="foreign_language_level"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="language_certificate"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="specialized_certificate"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="other_certificate"></app-change-profile-input>
+
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+
+  <div class="mt-3">
+    <!--    thông tin bảo hiểm xã hội-->
+    <ngb-accordion #a="ngbAccordion" activeIds="basic-info">
+      <ngb-panel id="basic-info8">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="t2 m-0">{{'EMPLOYEES.INSURANCE' | translate}}</h5>
+            <button ngbPanelToggle class="btn close p-0">
+              <i class="fa" [ngClass]="opened ? 'fa-angle-down' : 'fa-angle-right'"></i>
+            </button>
+          </div>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+          <!--          cũ-->
+          <div class="row mb-3">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin cũ</h4>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin mới</h4>
+            </div>
+          </div>
+          <app-change-profile-input fieldName="insurance_id"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="place_of_birth"></app-change-profile-input>
+          <div class="row mb-3">
+            <div class="col-md-2">
+              <label class="col-form-label">{{'EMPLOYEES.FIELDS.TEMPORARY_ADDRESS' | translate}}</label>
+            </div>
+            <div class="col-md-5">
+              <app-address [isSelected]="true" [address]="item?.employees_address_registration_book"></app-address>
+            </div>
+            <div class="col-md-5">
+              <app-address #formAddressRegistration [address]="item?.employees_address_registration_book"></app-address>
+            </div>
+          </div>
+
+          <app-change-profile-input fieldName="name_host"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="birthday_host" typeInput="date"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="address_host"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="relationship_host"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="medical_facility"></app-change-profile-input>
+
+          <div class="row mb-3">
+            <div class="col-md-2">
+              <label class="col-form-label">{{'EMPLOYEES.FIELDS.EMPLOYEES_FAMILY' | translate}}</label>
+            </div>
+            <div class="col-md-5">
+              <app-employee-edit-personal-children [allowChange]="false"
+                                                   [children]="employeesFamily">
+              </app-employee-edit-personal-children>
+            </div>
+            <div class="col-md-5">
+              <app-employee-edit-personal-children #formEmployeeFamily
+                                                   [children]="employeesFamily">
+              </app-employee-edit-personal-children>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+
+  <div class="mt-3">
+    <!--    thông tin hồ sơ nhân sự-->
+    <ngb-accordion #a="ngbAccordion" activeIds="basic-info">
+      <ngb-panel id="basic-info9">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="t2 m-0">{{'EMPLOYEES.MY_PROFILE' | translate}}</h5>
+            <button ngbPanelToggle class="btn close p-0">
+              <i class="fa" [ngClass]="opened ? 'fa-angle-down' : 'fa-angle-right'"></i>
+            </button>
+          </div>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+          <!--          cũ-->
+          <div class="row mb-3">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin cũ</h4>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center">Thông tin mới</h4>
+            </div>
+          </div>
+          <app-change-profile-input fieldName="curriculum_vitae"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="copy_of_identify_card"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="copy_of_birth_certificate"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="health_certificate"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="copy_of_registration_book"></app-change-profile-input>
+
+          <app-change-profile-input fieldName="copy_of_degree"></app-change-profile-input>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+
+  <div class="mt-3">
+    <!--    thông tin mở rộng-->
+    <ngb-accordion #a="ngbAccordion" activeIds="basic-info">
+      <ngb-panel id="basic-info10">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="t2 m-0">{{'EMPLOYEES.CUSTOM' | translate}}</h5>
+            <button ngbPanelToggle class="btn close p-0">
+              <i class="fa" [ngClass]="opened ? 'fa-angle-down' : 'fa-angle-right'"></i>
+            </button>
+          </div>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+          <div class="row justify-content-between custom-margin">
+
+            <div class="col-md-6 pr-5 border border-dark border-top-0 border-left-0 border-bottom-0">
+              <h4 class="text-center">Thông tin cũ</h4>
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 1</label>
+                <div class="col-9">
+                  <input class="form-control" value="thông tin 1" readonly disabled>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 2</label>
+                <div class="col-9">
+                  <input class="form-control" value="thông tin 2" readonly disabled>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 3</label>
+                <div class="col-9">
+                  <input class="form-control" value="thông tin 3" readonly disabled>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 4</label>
+                <div class="col-9">
+                  <input class="form-control" value="thông tin 4" readonly disabled>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 5</label>
+                <div class="col-9">
+                  <input class="form-control" value="thông tin 5" readonly disabled>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 6</label>
+                <div class="col-9">
+                  <input class="form-control" value="thông tin 6" readonly disabled>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 7</label>
+                <div class="col-9">
+                  <input class="form-control" value="lựa chon 1" readonly disabled>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 8</label>
+                <div class="col-9">
+                  <input class="form-control" readonly disabled value="thông tin 8">
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 9</label>
+                <div class="col-9">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1">Active</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 10</label>
+                <div class="col-9">
+                  <input class="form-control" value="thông tin 9" readonly disabled>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 pl-5">
+              <h4 class="text-center">Thông tin mới</h4>
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 1</label>
+                <div class="col-9">
+                  <input class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 2</label>
+                <div class="col-9">
+                  <app-date-time-picker [formControl]=""></app-date-time-picker>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 3</label>
+                <div class="col-9">
+                  <select class="form-control">
+                    <option *ngFor="let working of employeeWorkingStatus"
+                            [ngValue]="working.name">{{'EMPLOYEES.FIELDS.EMPLOYEE_WORKING_STATUS.' + working.value | translate}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 4</label>
+                <div class="col-9">
+                  <input class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 5</label>
+                <div class="col-9">
+                  <input class="form-control">
+                </div>
+              </div>
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 6</label>
+                <div class="col-9">
+                  <app-select-search-with-popup
+                    [options]="{
+                                              apiUrl: '',
+                                              selectColumn: 'number',
+                                              masterSearchComponents: masterSelectSearch.EXAM_DATA_LIST
+                                              }">
+                  </app-select-search-with-popup>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 7</label>
+                <div class="col-9">
+                  <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Lựa chon 1
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Lựa chọn 2
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 8</label>
+                <div class="col-9">
+                  <input class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 9</label>
+                <div class="col-9">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                    <label class="custom-control-label" for="customSwitch1">Active</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-form-label">Thông tin 10</label>
+                <div class="col-9">
+                  <input class="form-control">
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<button class="btn btn-lg btn-outline ml-2 my-1" (click)="openPopup()">{{"COMMON.FILTER" | translate}}</button>
+
+<ng-template #modalContent let-modal>
+  <div class="modal-header p-2">
+    <h3 class="modal-title">{{"COMMON.FILTER" | translate}}</h3>
+    <button type="button" class="close" ngbAutofocus (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body setting-filter">
+    <ng-container *ngFor="let item of filterForm; let i = index"
+                  [formGroup]="item.form">
+      <div class="d-flex align-items-center mb-3">
+        <a class="mr-3" (click)="onDelete(i)"><i class="fa fa-times"></i></a>
+
+        <div class="header-select">
+          <span class="mr-2">{{'COMMON.ITEM' | translate }}</span>
+          <select class="form-control mr-3" formControlName="compareField">
+            <option *ngFor="let opt of filterColumns" [ngValue]="opt.column">{{ opt.name | translate }}</option>
+          </select>
+        </div>
+
+        <div class="condition-select" *ngIf="item.form.get('compareField').value">
+          <span class="mr-2">{{'COMMON.CONDITION' | translate }}</span>
+          <select class="form-control operator mr-2" formControlName="condition">
+            <option *ngFor="let opt of item.conditions" [ngValue]="opt.value">
+              {{"COMMON.FILTER_CONDITION." + opt.name | translate}}
+            </option>
+          </select>
+
+          <div class="value" [ngSwitch]="item.type">
+            <!--'select' | 'date' | 'number' | 'boolean' | 'string'-->
+
+            <!-- Input type number -->
+            <app-number-input *ngSwitchCase="'number'"
+                              formControlName="compareValue"
+                              [fractionPart]="4"
+                              [defaultValue]="null"
+            ></app-number-input>
+
+            <!-- Input type date -->
+            <input *ngSwitchCase="'date'"
+                   class="form-control" type="date"
+                   formControlName="compareValue">
+
+            <!-- Input boolean -->
+            <app-toggle-check *ngSwitchCase="'boolean'"
+                              formControlName="compareValue"
+            ></app-toggle-check>
+
+            <!-- Input boolean -->
+            <ng-select *ngSwitchCase="'select'"
+                       [items]="item.select2Option?.options"
+                       [bindLabel]="item.select2Option?.bindLabel"
+                       [bindValue]="item.select2Option?.bindValue"
+                       [clearable]="false"
+                       formControlName="compareValue">
+            </ng-select>
+
+            <!-- DEFAULT -->
+            <input *ngSwitchDefault
+                   class="form-control"
+                   formControlName="compareValue">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <a (click)="onAdd()">
+      <i class="fa fa-plus"></i>
+      {{"COMMON.ADD" | translate}}
+    </a>
+  </div>
+
+  <div class="modal-footer btn-groups p-2">
+    <button class="btn btn-primary mr-1" (click)="onApply()">
+      <i class="fa fa-check"></i>
+      <span class="ml-1">{{'COMMON.APPLY' | translate }}</span>
+    </button>
+    <button class="btn btn-outline ml-1" (click)="onReset()">
+      <i class="fas fa-sync-alt"></i>
+      <span class="ml-1">{{'COMMON.RESET' | translate }}</span>
+    </button>
+  </div>
+</ng-template>

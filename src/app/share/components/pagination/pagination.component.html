@@ -1,0 +1,49 @@
+<div class="d-flex align-items-center flex-wrap t3 text-black-500 pagination" *ngIf="totalRecords">
+  <div class="mr-3" *ngIf="pager.pages && pager.pages.length">
+    <button type="button" class="btn btn-paging"
+            [disabled]="pager.currentPage === 1"
+            (click)="selectPage(1)">
+      <i class="fas fa-angle-double-left"></i>
+    </button>
+    <button type="button" class="btn btn-paging"
+            [disabled]="pager.currentPage === 1"
+            (click)="selectPage(pager.currentPage - 1)">
+      <i class="fas fa-angle-left"></i>
+    </button>
+    <button type="button" class="btn btn-paging"
+            [ngClass]="{'active': pager.currentPage === page}"
+            *ngFor="let page of pager.pages"
+            (click)="selectPage(page)">
+      {{page}}
+    </button>
+
+    <button type="button" class="btn btn-paging"
+            [disabled]="pager.currentPage === pager.totalPages"
+            (click)="selectPage(pager.currentPage + 1)">
+      <i class="fas fa-angle-right"></i>
+    </button>
+    <button type="button" class="btn btn-paging"
+            [disabled]="pager.currentPage === pager.totalPages"
+            (click)="selectPage(pager.totalPages)">
+      <i class="fas fa-angle-double-right"></i>
+    </button>
+  </div>
+  <div class="mr-3">
+    <i class="fas fa-layer-group"></i>
+    {{pageInfo}}
+  </div>
+
+  <div class="">
+    <i class="far fa-clone"></i>
+    {{ 'COMMON.LIMIT' | translate }}：
+  </div>
+
+  <ng-container *ngFor="let size of pageSizeList; let last=last">
+    <button class="btn btn-sm btn-link p-0"
+            [disabled]="size === pageSize"
+            (click)="setPageSize(size)">
+      {{size}}
+    </button>
+    {{last ? '' : ',&nbsp;'}}
+  </ng-container>
+</div>

@@ -1,0 +1,64 @@
+<div class="list-posistions">
+  <div class="btn btn-success btn-add btn-sm" (click)="addNew()" *ngIf="allowChange">
+    <i class="fas fa-plus"></i>
+  </div>
+  <div class="table-edit">
+    <div class="table-head" [ngClass]="{'pl-5': allowChange}">
+      <div class="action" *ngIf="allowChange">#</div>
+      <div class="row table-head-row">
+        <div class="col-md-3 table-head-col">
+          <div class="table-head-cell">
+            <label class="col-form-label ">{{'EMPLOYEES.FIELDS.FULL_NAME' | translate}}</label>
+          </div>
+        </div>
+        <div class="col-md-3 table-head-col">
+          <div class="table-head-cell">
+            <label class="col-form-label ">{{'EMPLOYEES.FIELDS.BIRTH_DAY' | translate}}</label>
+          </div>
+        </div>
+        <div class="col-md-2 table-head-col">
+          <div class="table-head-cell">
+            <label class="col-form-label ">{{'EMPLOYEES.FIELDS.GENDER' | translate}}</label>
+          </div>
+        </div>
+        <div class="col-md-4 table-head-col">
+          <div class="table-head-cell">
+            <label class="col-form-label ">{{'EMPLOYEES.FIELDS.ADDRESS' | translate}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-body">
+      <ng-container *ngFor="let item of formList; let i = index">
+        <div class="table-body-row" [formGroup]="item._form" [ngClass]="{'pl-5': allowChange}">
+          <div class="action" *ngIf="allowChange">
+            <span class="btn btn-danger btn-sm" (click)="removeItem(i)"><i class="fas fa-minus-circle"></i></span>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-3 table-body-col">
+              <div class="table-body-cell">
+                <input class="form-control" [attr.disabled]="!allowChange ? true : null" formControlName="name"/>
+              </div>
+            </div>
+            <div class="col-md-3 table-body-col">
+              <div class="table-body-cell" [ngClass]="{'disabled-content': !allowChange}">
+                <app-date-time-picker [placeholder]="placeholder" formControlName="birthday"
+                                      [format]="format"></app-date-time-picker>
+              </div>
+            </div>
+            <div class="col-md-2 table-body-col">
+              <div class="table-body-cell">
+                <input class="form-control" [attr.disabled]="!allowChange ? true : null" formControlName="gender"/>
+              </div>
+            </div>
+            <div class="col-md-4 table-body-col">
+              <div class="table-body-cell">
+                <input class="form-control" [attr.disabled]="!allowChange ? true : null" formControlName="address"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

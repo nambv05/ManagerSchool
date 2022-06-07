@@ -1,0 +1,105 @@
+<fieldset [ngClass]="{'filter-collapse': true, 'expand': isFilter, 'mb-md-4': isFilter}">
+  <legend (click)="isFilter = !isFilter" class="font-weight-bold">
+    <i class="fas filter-collapse-icon "></i>
+    {{'COMMON.FILTER' |translate}}
+  </legend>
+  <div [ngbCollapse]="!isFilter">
+    <div class="setting-filter ml-2">
+      <ng-container *ngFor="let item of filterForm; let i = index"
+                    [formGroup]="item.form">
+        <div class="form-inline">
+          <div class="mr-3 fs15 cursor-pointer" (click)="onDelete(i)">
+            <i class="fa fa-times"></i>
+          </div>
+          <label class="my-1 mr-2 fs15">
+            {{'COMMON.ITEM' | translate }}
+          </label>
+          <select class="form-control my-1 mr-sm-2" formControlName="compareField">
+            <ng-container *ngFor="let opt of filterColumns">
+              <option [ngValue]="opt.column" *ngIf="opt.isFilter">
+                {{ opt.name | translate }}
+              </option>
+            </ng-container>
+          </select>
+
+          <label class="my-1 ml-3 mr-2 fs15" *ngIf="item.form.get('compareField').value">
+            {{'COMMON.CONDITION' | translate }}
+          </label>
+          <select class="form-control my-1 mr-sm-2 w-11" formControlName="condition"
+                  *ngIf="item.form.get('compareField').value">
+            <option *ngFor="let opt of item.conditions"
+                    [ngValue]="opt.value">
+              {{"COMMON.FILTER_CONDITION." + opt.name | translate}}
+            </option>
+          </select>
+
+          <!--'select' | 'date' | 'number' | 'boolean' | 'string'-->
+          <div [ngSwitch]="item.type" *ngIf="item.form.get('compareField').value">
+
+            <!-- Input type number -->
+            <app-number-input *ngSwitchCase="'number'"
+                              formControlName="compareValue"
+                              [numberFormat]="{defaultValue: '0'}"
+                              class="wx-20px">
+            </app-number-input>
+
+            <!-- Input type date -->
+            <input *ngSwitchCase="'date'"
+                   class="form-control my-1 mr-sm-2 wx-20px" type="date"
+                   [max]="maxDate"
+                   formControlName="compareValue"
+                   [appTooltip]="flagCheck ? 'đâs' : ''"
+                   [ngClass]="{'border border-danger': flagCheck}">
+
+            <!-- Input boolean -->
+            <app-toggle-check *ngSwitchCase="'boolean'"
+                              formControlName="compareValue"
+                              class="wx-20px">
+            </app-toggle-check>
+
+            <!-- Input boolean -->
+            <!--                <ng-select *ngSwitchCase="'select'"-->
+            <!--                           [items]="item.select2Option?.options"-->
+            <!--                           [bindLabel]="item.select2Option?.bindLabel"-->
+            <!--                           [bindValue]="item.select2Option?.bindValue"-->
+            <!--                           [clearable]="false"-->
+            <!--                           formControlName="compareValue"-->
+            <!--                           class="wx-20px">-->
+            <!--                </ng-select>-->
+
+            <select *ngSwitchCase="'select'"
+                    formControlName="compareValue"
+                    class="wx-20px form-control">
+              <option *ngFor="let option of item?.select2Option?.options"
+                      [value]="option[item.select2Option?.bindValue]">
+                {{option[item.select2Option?.bindLabel]}}
+              </option>
+            </select>
+
+            <!-- DEFAULT -->
+            <input *ngSwitchDefault type="text"
+                   class="form-control my-1 mr-sm-2 wx-20px"
+                   formControlName="compareValue">
+          </div>
+        </div>
+      </ng-container>
+
+      <div (click)="onAdd()" class="mt-2 mb-3 fs15 w-60px cursor-pointer">
+        <i class="fa fa-plus"></i>
+        {{"COMMON.ADD" | translate}}
+      </div>
+      <div class="mb-1">
+        <button class="btn btn-custom btn-primary mr-1" (click)="onApply()">
+          <i class="fa fa-check"></i>
+          <span class="ml-1">{{'COMMON.APPLY' | translate }}</span>
+        </button>
+        <button class="btn btn-custom btn-outline ml-1" (click)="onReset()">
+          <i class="fas fa-sync-alt"></i>
+          <span class="ml-1">{{'COMMON.RESET' | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+

@@ -1,0 +1,37 @@
+<button class="btn btn-custom btn-outline ml-2 my-1" (click)="openPopup()">{{"COMMON.ADJUST_ITEM" | translate}}</button>
+
+<ng-template #modalContent let-modal>
+  <div class="modal-header p-2">
+    <h3 class="modal-title">{{"COMMON.ADJUST_ITEM" | translate}}</h3>
+    <button type="button" class="close" ngbAutofocus (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="drag-list" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div class="drag-box" *ngFor="let col of columns" cdkDrag>
+        <div class="box" [ngClass]="{'disabled': !col.isShow}">
+          <div class="d-flex align-items-center">
+            <div class="cursor-pointer mr-2" (click)="col.isShow = !col.isShow">
+              <i class="fas fs20 fa-check-circle" [ngClass]="col.isShow ? 'fa-check-circle' : 'fa-circle'"></i>
+            </div>
+            {{col.name | translate}}
+          </div>
+          <div class="cursor-move" cdkDragHandle [cdkDragHandleDisabled]="!col.isShow">
+          <i class="fas fa-ellipsis-v fs20"></i>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer btn-groups p-2">
+    <button class="btn btn-primary mr-1" (click)="onApply()">
+      <i class="fa fa-check"></i>
+      <span class="ml-1">{{'COMMON.APPLY' | translate }}</span>
+    </button>
+    <button class="btn btn-outline ml-1" (click)="onReset()">
+      <i class="fas fa-sync-alt"></i>
+      <span class="ml-1">{{'COMMON.RESET' | translate }}</span>
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,45 @@
+<div class="full-page login-page" style="height: 100vh; background-image: url('../../../assets/images/background-2.jpg')">
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 ml-auto mr-auto">
+          <form id="login-form" [formGroup]="loginForm" (ngSubmit)="login()" class="form" action="" method="post">
+            <div class="card" data-background="color" data-color="blue">
+              <div>
+                <div class="card-header">
+                  <h3 class="card-title">{{'LOGIN_PAGE.LOGIN' | translate}}</h3>
+                </div>
+                <div class="card-content">
+                  <div class="form-group">
+                    <label>{{'LOGIN_PAGE.EMAIL' | translate}}</label>
+                    <input type="text" class="form-control" formControlName="email" [placeholder]="'LOGIN_PAGE.EMAIL' | translate"
+                           [appTooltip]="getErrorControlMsg(['required'], 'email')"
+                           [ngClass]="{'border border-danger': isShowErrorControl('email')}" (blur)="onTrim()">
+                  </div>
+                  <div class="form-group">
+                    <label>{{'LOGIN_PAGE.PASSWORD'|translate}}</label>
+                    <div class="input-group">
+                      <input class="form-control" type="password" formControlName="password"
+                             [type]="showPassword ? 'text' : 'password'"
+                             [appTooltip]="getErrorControlMsg(['required'], 'password')"
+                             [ngClass]="{'border border-danger': isShowErrorControl('password')}" (blur)="onTrim()">
+                      <span class="input-group-addon" (click)="showPassword = !showPassword"><i
+                        [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'" class="fas fa-eye"></i></span>
+                    </div>
+                  </div>
+                  <span class="text-danger" style="font-size: 12px"></span>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btn-success btn-fill btn-wd ">{{'LOGIN_PAGE.LOGIN' | translate}}</button>
+                <div class="forgot margin-5px">
+                  <a class="text-center cursor-point" href="#">{{'LOGIN_PAGE.FORGOT_PASSWORD' | translate}}</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

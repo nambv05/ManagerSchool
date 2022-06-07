@@ -1,0 +1,48 @@
+<li class="item item-{{ level }}" [ngClass]="{'item-open': isShowList == true}" *ngIf="item && !item?.isDeleted">
+    <div>
+    <span (click)="showListSub()" [ngbTooltip]="getMessage('DEPARTMENTS.CLICK_OPEN')">
+        <i *ngIf="item.childs_count && !isShowList" class="fas fa-folder icon icon-folder"></i>
+        <i *ngIf="item.childs_count && isShowList" class="fas fa-folder-open icon icon-folder"></i>
+    </span>
+    <i *ngIf="!item.childs_count" class="far fa-file icon"></i>
+    <span [ngbTooltip]="item?.description||item?.name">{{ item.name }}</span>
+</div>
+    <span *ngIf="item.childs_count">
+        ({{ item.childs_count }})
+    </span>
+    <span class="controls ml-5">
+    
+        <span class="controls">
+            <i class="control icon-users far fa-check-square icon-select mr-2"
+                *ngIf="allowSelect && selected.indexOf(item?.id) >=0"
+                [ngbTooltip]="getMessage('DEPARTMENTS.SELECT_DEPARTMENT_CHILD', {name: item?.name})"
+                (click)="onClickSelect(0)"></i>
+    
+            <i class="control icon-users far fa-square icon-select mr-2"
+                *ngIf="allowSelect && selected.indexOf(item?.id)==-1"
+                [ngbTooltip]="getMessage('DEPARTMENTS.SELECT_DEPARTMENT_CHILD', {name: item?.name})"
+                (click)="onClickSelect(1)"></i>
+        </span>
+               
+        <span class="btn-group">
+            <i class="control icon-edit fas fa-pencil-alt btn btn-primary btn-sm " *ngIf="options?.allowEdit"
+                (click)="onClickEdit(item)" [ngbTooltip]="getMessage('COMMON.EDIT')"></i>
+            <i class="control icon-remove fas fa-trash-alt btn btn-danger btn-sm " *ngIf="options?.allowRemove"
+                (click)="onClickRemove(item)" [ngbTooltip]="getMessage('COMMON.DELETE')"></i>
+                <i class=" control icon-users fas fa-unlink btn btn-danger btn-sm " *ngIf="allowUnlinkParent"
+                    [ngbTooltip]="getMessage(' .UNLINK_PARENT', {name: item?.name, parent_name: item?.parent?.name })"
+                    (click)="onClickUnlinkParent(item)"></i>
+                <i class="custom control icon-users fas fa-users btn btn-info btn-sm " *ngIf="options?.allowShowUsers"
+                tooltipClass="my-custom-class" [ngbTooltip]="getMessage('DEPARTMENTS.SHOW_USERS', {name: item?.name})" (click)="onClickShowUser(item)"></i>
+        </span>
+    </span>
+
+    <ng-container *ngIf="item.childs_count && isShowList">
+        <app-share-department-list [items]="itemsChild" [level]="level + 1" [options]="options"
+            [allowSelect]="allowSelect" [(selected)]="selected"
+            (eventEdit)="onClickEdit($event, true)" (eventRemove)="onClickRemove($event, true)"
+            (eventShowUser)="onClickShowUser($event, true)" (eventSelect)="onClickSelectChild($event)"
+            (eventShowUser)="onUnlinkParent($event, true)">
+        </app-share-department-list>
+    </ng-container>
+</li>

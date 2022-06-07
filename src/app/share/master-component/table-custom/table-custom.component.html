@@ -1,0 +1,84 @@
+<div class="table-resizable screen-list" *ngIf="headers?.length">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th class="table-selection" *ngIf="!selectOnlyOne">
+        <input type="checkbox"
+               [checked]="isSelectedAll"
+               (change)="setSelectAll($event.target['checked'])">
+      </th>
+      <th class="table-selection text-center" *ngIf="canEdit || canDelete || canView">#</th>
+      <ng-container *ngFor="let header of headers; let i = index">
+        <th  *ngIf="!header?.isHide"
+            [style.text-align]="getTextAlign(header?.type)">
+          <div class="th-sortable pr-2" [sortable]="header?.column" [selectSearchMode]="selectSearchMode"
+               (sort)="onSort($event)">
+            <span class="th-name">{{header?.name | translate}}</span>
+            <span class="th-icon" *ngIf="isSort"><i class="fa" aria-hidden="false"></i></span>
+          </div>
+        </th>
+      </ng-container>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of data; let i = index"
+        [ngClass]="{'selected-row': selectOnlyOne
+        ? selectedValue?.value === item[selectedValue?.key]
+        : item.checked.value}"
+        (click)="onClickRow(item)">
+      <td class="table-selection" *ngIf="!selectOnlyOne">
+        <input type="checkbox" [formControl]="item['checked']" [attr.disabled]="item?.disabled ? true : null"
+          (change)="setSelectRow(item, $event.target['checked'])">
+      </td>
+      <td class="table-selection"
+        *ngIf="(canEdit && item.canEdit) || (canDelete && item.canDelete) || (canView && item.canView)">
+        <button class="btn py-0 px-1" (click)="onView(item, i)" *ngIf="canView && item.canView"><i
+            class="fa fa-eye"></i></button>
+        <button class="btn py-0 px-1 text-success" (click)="onDetail(item, i)" *ngIf="canEdit  && item.canEdit"><i
+            class="fas fa-edit"></i></button>
+        <button class="btn py-0 px-1 text-danger" (click)="onDelete(item, i)" *ngIf="canDelete && item.canDelete"><i
+            class="fas fa-minus-circle"></i></button>
+      </td>
+      
+      <ng-container *ngFor="let header of headers; let i = index">
+        <td class="{{ header?.classColumn }}" *ngIf="!header?.isHide">
+          <ng-container [ngSwitch]="header?.type">
+            <ng-container *ngSwitchCase="inputFormat.BUTTONCIRCLE">
+              <button type="button" class="btn btn-info mr-1 btn-column btn-cicrle btn-sm" (click)="onActionRow(header?.column, item)"
+                *ngIf="(item[header?.column]?item[header?.column]:(header?.cellText?header?.cellText:'')) != ''">
+                {{ item[header?.column]?item[header?.column]:header?.cellText }}</button>
+            </ng-container>
+            <ng-container *ngSwitchCase="inputFormat.BUTTON">
+                <button type="button" class="btn btn-custom btn-info mr-1 btn-column btn-sm"
+                  *ngIf="(item[header?.column]?item[header?.column]:(header?.cellText?header?.cellText:'')) != ''"
+                  (click)="onActionRow(header?.column, item)">
+                  {{ item[header?.column]?item[header?.column]:header?.cellText }}
+                </button>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+
+<!--                <app-input-resize *ngIf="header?.subColumn; else other_content"-->
+<!--                                  [type]="header?.type"-->
+<!--                                  [value]="item[header?.column][header?.subColumn]"-->
+<!--                                  [header]="header"-->
+<!--                                  [unit]="header?.numberFormat?.unit">-->
+<!--                </app-input-resize>-->
+
+<!--                <app-input-resize  #other_content [type]="header?.type"-->
+<!--                                   [value]="item[header?.column]"-->
+<!--                                   [header]="header"-->
+<!--                                   [unit]="header?.numberFormat?.unit">-->
+<!--                </app-input-resize>-->
+              <app-input-resize [type]="header?.type"
+                                 [value]="item[header?.column]"
+                                 [header]="header"
+                                 [unit]="header?.numberFormat?.unit">
+              </app-input-resize>
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</div>

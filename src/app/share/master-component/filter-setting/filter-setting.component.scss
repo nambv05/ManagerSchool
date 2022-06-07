@@ -1,0 +1,28 @@
+.setting-filter {
+  white-space: nowrap;
+  a {
+    color: black;
+    text-decoration: unset;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .header-select {
+    display: flex;
+    align-items: center;
+    width: 250px;
+  }
+  .condition-select {
+    display: flex;
+    align-items: center;
+    .operator { width: 120px; }
+    .value {width: 220px}
+  }
+}
+
+.btn-groups {
+  display: flex;
+  flex-wrap: unset;
+  justify-content: center;
+}

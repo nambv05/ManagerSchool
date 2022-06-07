@@ -1,0 +1,52 @@
+<div class="exam-data-master" [ngClass]="{'component-select': selectSearchMode}">
+  <div [ngClass]="{'modal-header p-2': selectSearchMode}">
+    <h3>{{"EXAMDATA.TITLE" | translate}}</h3>
+    <button type="button" class="close m-0 p-1" *ngIf="selectSearchMode" (click)="onDismissPopup()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div [ngClass]="{'modal-body pt-0': selectSearchMode}">
+    <div class="my-2 d-flex align-items-center flex-wrap">
+      <div *ngIf="!selectSearchMode">
+        <button class="btn btn-lg btn-outline mr-2 my-1" (click)="addRow()">
+          <img class="w-20px" src="assets/icons/plus-round.svg">
+          {{"COMMON.NEW" | translate}}
+        </button>
+        <button class="btn btn-lg btn-outline mr-2 my-1" (click)="actionSave()">
+          <img class="w-20px" src="assets/icons/save.svg">
+          {{"COMMON.SAVE" | translate}}
+        </button>
+        <button class="btn btn-lg btn-outline mr-2 my-1" (click)="deleteMany()">
+          <img class="w-20px" src="assets/icons/delete.svg">
+          {{"COMMON.DELETE" | translate}}
+        </button>
+        <button class="btn btn-lg btn-outline mr-2 my-1" (click)="onCancel()">
+          <img class="w-20px h-20px" src="assets/icons/cancel.svg">
+          {{"COMMON.CANCEL" | translate}}
+        </button>
+        <app-export-file type="exam-dataes" [keyScreen]="screenId" [selectedHeaders]="selectedHeaders"
+          [headers]="headers" [criteria]="searchParam.criteria" [order]="searchParam.order">
+        </app-export-file>
+      </div>
+      <div class="ml-auto">
+        <app-column-setting [headerColumns]="headers" [visibleColumns]="selectedHeaders" [screenId]="screenId"
+          (headersChange)="onChangeColumnSetting($event)"></app-column-setting>
+      </div>
+    </div>
+
+    <app-filter-setting-v2 [columns]="headers" [criteria]="searchParam.filterList" [screenId]="screenId" [isFilter] = "isFilter"
+                           (filtersChange)="onFilter($event)">
+    </app-filter-setting-v2>
+
+    <app-table-custom [headers]="headers" [sortColumn]="searchParam.order" [dataList]="dataList" [canEdit]="!selectSearchMode"
+                      [selectOnlyOne]="selectSearchMode"
+                      (editClick)="onDetail($event)" (sort)="onSort($event)" (selectRow)="onSelectFromTableCustom($event)"
+                      (actionRow)="onActionRow($event)">
+    </app-table-custom>
+
+    <app-pagination [totalRecords]="totalRecords" [selectedPage]="searchParam.page + 1" [pageSize]="searchParam.size"
+      [selectSearchMode]="selectSearchMode" (changePage)="changePage($event)" (changePageSize)="changePageSize($event)">
+    </app-pagination>
+  </div>
+</div>

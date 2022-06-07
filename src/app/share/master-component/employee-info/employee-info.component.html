@@ -1,0 +1,818 @@
+<ngb-accordion #a="ngbAccordion" activeIds="basic-info">
+  <ngb-panel id="basic-info">
+    <ng-template ngbPanelHeader let-opened="opened">
+      <div class="d-flex align-items-center justify-content-between">
+        <h5 class="t2 m-0">{{'EMPLOYEES.BASIC_INFO' | translate}}</h5>
+        <button ngbPanelToggle class="btn close p-0">
+          <i class="fa" [ngClass]="opened ? 'fa-angle-down' : 'fa-angle-right'"></i>
+        </button>
+      </div>
+    </ng-template>
+
+    <ng-template ngbPanelContent>
+      <div class="row justify-content-between custom-margin">
+        <div class="col-md-6">
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label" style="text-align: left;">
+              Avatar</label>
+            <div class="col-9">
+
+              <div
+                style="border: 1px solid black; width: 90px; height: 90px; display: flex; justify-content: center; align-items: center">
+                <img src="../../../../assets/images/default-avatar.png" style="max-width: 90px; height: auto"
+                     alt="Ảnh đại diện">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.ID' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">1</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.FULL_NAME' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">name 1</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.EMAIL' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">abc@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.GENDER' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">nam</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.NAME_COMPANY' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">Ominext</div>
+            </div>
+          </div>
+
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.DEPARTMENT' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">BU2</div>
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.POSITIONS' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">TL</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row mb-5"></div>
+          <div class="form-group row mb-5"></div>
+
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.OFFICE' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">PHP</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.CATEGORY' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">ABC</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.GROUP' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">BU2</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.STATUS' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">chính thức</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.WORKING_STATUS' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">đang làm</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.PROJECT' | translate}}</label>
+            <div class="col-9">
+              <div class="form-control">Dự án 1</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+
+<ul ngbNav [(activeId)]="activeId" class="nav-tabs mt-3" #nav="ngbNav">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>{{'EMPLOYEES.DATE' | translate}}</a>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>{{'EMPLOYEES.PERSONAL_INFORMATION' | translate}}</a>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>{{'EMPLOYEES.COMMUNICATIONS' | translate}}</a>
+  </li>
+  <li [ngbNavItem]="4">
+    <a ngbNavLink>{{'EMPLOYEES.EDUCATION' | translate}}</a>
+  </li>
+  <li [ngbNavItem]="5">
+    <a ngbNavLink>{{'EMPLOYEES.SOCIAL_INSURANCE' | translate}}</a>
+  </li>
+  <li [ngbNavItem]="6">
+    <a ngbNavLink>{{'EMPLOYEES.PROFILE' | translate}}</a>
+  </li>
+  <li [ngbNavItem]="7">
+    <a ngbNavLink>{{'EMPLOYEES.EXTEND' | translate}}</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div *ngIf="activeId === 1">
+    <div class="row justify-content-between custom-margin">
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.UPDATED_AT' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">19/05/2021</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.CHECK_IN_DATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">18/05/2021</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.CHECK_OUT_DATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">18/05/2021</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.START_INTERN' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">18/05/2021</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.PROBATIONARY_DATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">18/05/2021</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.OFFICIAL_DATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">19/05/2021</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.START_COLLABORATORS' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">18/05/2021</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeId === 2">
+    <div class="row justify-content-between custom-margin">
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.BIRTHDAY' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">12/12/2000</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.IDENTIFICATION_NUMBER' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">123456789</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.IDENTIFICATION_DATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">09/09/2018</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.IDENTIFICATION_PLACE_OF' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">Hà nội</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.TAX_CODE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">21345666</div>
+          </div>
+        </div>
+
+        <div class="form-group row" style="margin-bottom: -8px;margin-top: 8px">
+          <label
+            class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.PERMANENT_ADDRESS' | translate}}</label>
+        </div>
+
+        <div class="group-input">
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.PROVINCIAL' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.DISTRICT' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.WARD' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.VILLAGE' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row" style="margin-bottom: -8px;margin-top: 8px">
+          <label
+            class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.TEMPORARY_ADDRESS' | translate}}</label>
+        </div>
+
+        <div class="group-input">
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.PROVINCIAL' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.DISTRICT' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.WARD' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.VILLAGE' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row" style="margin-bottom: -8px;margin-top: 8px">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.REGISTER_PARKING' | translate}}</label>
+        </div>
+        <div class="group-input">
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.LICENSE_PLATES' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">30k-12345</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.RANGE_OF_VEHICLE' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">ô tô</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.MARITAL_STATUS' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">độc thân</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label" style="margin-top: -10px">{{'EMPLOYEES.FIELDS.CONTACT_USER' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">nguyễn văn a</div>
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label" style="margin-top: -10px">{{'EMPLOYEES.FIELDS.PHONE_CONTACT_USER' |
+            translate}}</label>
+          <div class="col-9">
+            <div class="form-control">101245522</div>
+          </div>
+        </div>
+
+        <div class="form-group row" style="margin-bottom: -8px;margin-top: 8px">
+          <label class="col-12 col-form-label">{{'EMPLOYEES.FIELDS.INFORMATION_CHILDREN' | translate}}</label>
+        </div>
+
+        <div class="group-input">
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">Con nhỏ 1</label>
+            <div class="col-9">
+              <div class="form-control">Nguyễn Văn A - 10/10/2018 - nam</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">Con nhỏ 2</label>
+            <div class="col-9">
+              <div class="form-control">Nguyễn Thị B - 10/10/2018 - nữ</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">Con nhỏ 3</label>
+            <div class="col-9">
+              <div class="form-control">Nguyễn Văn A - 10/10/2018 - nam</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">Con nhỏ 4</label>
+            <div class="col-9">
+              <div class="form-control">Nguyễn Văn A - 10/10/2018 - nam</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="form-group row" style="margin-bottom: -8px;margin-top: 8px">
+          <label
+            class="col-12 col-form-label">{{'EMPLOYEES.FIELDS.INFORMATION_BANK_ACCOUNT' | translate}}</label>
+        </div>
+
+        <div class="group-input">
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.BANK_NUMBER' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">123456789</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.BANK_NAME' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Nguyễn văn a</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.BANK_USER_NAME' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Techcombank</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.BANK_BRANCH' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Cầu giấy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="{'d-none': activeId !== 3}">
+    <div class="row justify-content-between custom-margin">
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.PHONE_NUMBER' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">012574</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.CHATWORK_ACCOUNT' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">name1</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.SKYPE_ACCOUNT' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">name 1</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.FACEBOOK_LINK' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">https://facebook.com</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.PERSONAL_EMAIL' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">name1@gmail.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngClass]="{'d-none': activeId !== 4}">
+    <div class="row justify-content-between custom-margin">
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.SCHOOL_NAME' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">Thương mại</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.DEGREE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">Kỹ sư</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.MAJORS' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">Công nghệ thông tin</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.FOREIGN_LANGUAGE_LEVEL' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">Tiếng Nhật</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.LANGUAGE_CERTIFICATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">700+</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.SPECIALIZED_CERTIFICATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">abc</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.OTHER_CERTIFICATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">abc</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngClass]="{'d-none': activeId !== 5}">
+    <div class="row justify-content-between custom-margin">
+      <div class="col-md-6">
+
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.INSURANCE_ID' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">123456789</div>
+          </div>
+        </div>
+
+        <div class="form-group row" style="margin-bottom: -8px;margin-top: 8px">
+          <label
+            class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.ADDRESS_IN_REGISTRATION_BOOK' | translate}}</label>
+        </div>
+
+        <div class="group-input">
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.PROVINCIAL' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Hà nội</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.DISTRICT' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Cầu giấy</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.WARD' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">dịch vọng hậu</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.VILLAGE' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">số 123 đường hoàng quốc việt</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group row" style="margin-bottom: -8px;margin-top: 8px">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.HOST' | translate}}</label>
+        </div>
+        <div class="group-input">
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.NAME_HOST' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Nguyenx văn a</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.BIRTHDAY_HOST' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">10-10-1960</div>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.ADDRESS_HOST' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Hà nội</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.RELATIONSHIP_HOST' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Con</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row" style="margin-bottom: -8px;margin-top: 8px">
+          <label class="col-12 col-form-label">{{'EMPLOYEES.FIELDS.CONFIRM_HEALTH_INSURANCE' | translate}}</label>
+        </div>
+        <div class="group-input">
+          <div class="form-group row mb-2">
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.EMPLOYEE_AT' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Hà Nội</div>
+            </div>
+            <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.MEDICAL_FACILITY' | translate}}</label>
+            <div class="col-3">
+              <div class="form-control">Cầu Giấy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-12 col-form-label">{{'EMPLOYEES.FIELDS.MEMBER_OF_FAMILY' | translate}}</label>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 1</label>
+          <div class="col-9">
+            <div class="form-control">Bố-Nguyễn văn a-10/10/1960-Hà Nội</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 2</label>
+          <div class="col-9">
+            <div class="form-control">Mẹ-Nguyễn thị b-10/10/1981-Hà Nội</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 3</label>
+          <div class="col-9">
+            <div class="form-control">Anh-Nguyễn văn c-10/10/1980-Hà Nội</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 4</label>
+          <div class="col-9">
+            <div class="form-control">anh-Nguyễn văn a-10/10/1982-Hà Nội</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 5</label>
+          <div class="col-9">
+            <div class="form-control">Em-Nguyễn văn d-10/10/1990-Hà Nội</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 6</label>
+          <div class="col-9">
+            <div class="form-control">Con-Nguyễn văn e-10/10/2019-Hà Nội</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 7</label>
+          <div class="col-9">
+            <div class="form-control">abc</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 8</label>
+          <div class="col-9">
+            <div class="form-control">abc</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 9</label>
+          <div class="col-9">
+            <div class="form-control">abc</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thành viên 10</label>
+          <div class="col-9">
+            <div class="form-control">abc</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngClass]="{'d-none': activeId !== 6}">
+    <div class="row justify-content-between custom-margin">
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.CURRICULUM_VITAE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">đã nộp đủ</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.COPY_OF_IDENTIFY_CARD' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">đã nộp đủ</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.COPY_OF_BIRTH_CERTIFICATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">chưa nộp</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.HEALTH_CERTIFICATE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">đã nộp đủ</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.COPY_OF_REGISTRATION_BOOK' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">đã nộp đủ</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">{{'EMPLOYEES.FIELDS.COPY_OF_DEGREE' | translate}}</label>
+          <div class="col-9">
+            <div class="form-control">chưa công chứng</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeId === 7">
+    <div class="row justify-content-between custom-margin">
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 1</label>
+          <div class="col-9">
+            <div class="form-control">thông tin 1</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 2</label>
+          <div class="col-9">
+            <div class="form-control">thông tin 2</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 3</label>
+          <div class="col-9">
+            <div class="form-control">thông tin 3</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 4</label>
+          <div class="col-9">
+            <div class="form-control">thông tin 4</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 5</label>
+          <div class="col-9">
+            <div class="form-control">thông tin 5</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 6</label>
+          <div class="col-9">
+            <div class="form-control">thông tin 6</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 7</label>
+          <div class="col-9">
+            <div class="form-control">lựa chon 7</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 8</label>
+          <div class="col-9">
+            <div class="form-control">thông tin 8</div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 9</label>
+          <div class="col-9">
+              <input type="checkbox" id="vehicle1">
+              <label class="ml-2">Hiển thị</label>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-3 col-form-label">Thông tin 10</label>
+          <div class="col-9">
+            <div class="form-control">thông tin 9</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
